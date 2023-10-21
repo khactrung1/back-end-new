@@ -1,0 +1,15 @@
+.list-newsAddmisions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 500px 500px;
+  gap: 30px;
+}
+
+.newsAddmisions:nth-child(3) {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+}
+
+.newsAddmisions:nth-child(3) .news-image {
+  height: 80%;
+}

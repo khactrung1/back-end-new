@@ -1,0 +1,2 @@
+app.set('view engine', 'pug');
+app.set('views', './views');

@@ -1,0 +1,50 @@
+include ./pug/mixins
+
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Khoa học công nghệ
+  link(rel='stylesheet' href='../css/style.css')
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=DM+Sans:opsz,wght@9..40,500&display=swap' rel='stylesheet')
+  link(rel="stylesheet", href="../css/newsEvent.css")
+  link(rel="stylesheet", href="../css/technology.css")
+header
+  .container-menu
+    .logo-menu-div
+      a.logo-menu(href='/') News
+    .news-div
+      ul.menu
+        li
+          a(id = 'home', href="/") Trang chủ
+        li
+          a(id = 'newsEvent', href="/search_category?category='news'") Tin tức sự kiện
+        li
+          a(id = 'addmisions', href="/search_category?category='addmissions'") Tuyển sinh
+        li
+          a(id = 'technology', href="/search_category?category='technology'") Khoa học công nghệ
+    
+body 
+  .container
+    .header-category
+      h2 Khoa học công nghệ
+
+    //- section.newsTechnology-category
+    //-   .list-newsTechnology 
+    //-     +newsTechnology
+    //-     +newsTechnology
+    //-     +newsTechnology
+    //-     +newsTechnology
+    //-     +newsTechnology
+
+    section.newsEvent1
+      .list-news-event 
+        each data in datas
+          a(href= data.source_post).news
+            img(src= data.main_image, alt="").news-image
+            h3.news-title #{data.title}
+            .news-item 
+                span.name-university #{data.publication}
+                span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
