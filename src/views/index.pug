@@ -14,7 +14,8 @@ head
 header
   .container-menu
     .logo-menu-div
-      a.logo-menu(href="/") News
+      a.logo-menu(href='index.html')
+        img(src='./images/Logo VUI.PNG', alt='logo')
     .news-div
       ul.menu      
         li
@@ -29,65 +30,116 @@ header
 body 
   .container
       //- section.hot-news
-      //-     a(href="").header-hot-news 
-      //-         img(src="https://source.unsplash.com/random", alt="#").hot-news-imgae
+      //-   each data in datas['newest_news']
+      //-     a(href= data.link).header-hot-news 
+      //-         img(src=data.main_image, alt="#").hot-news-imgae
       //-         .hot-news-content 
       //-             .hot-news-title 
-      //-                 h2 Money Heist spin-off series Berlin: Netflix release date, trailer, cast details from Tudum 
+      //-                 h2 #{data.title}
       //-             .hot-news-item 
-      //-               img(src="./images/logo-phenikaa.png", alt="").hot-news-name-university 
-      //-               span.hot-news-time (15 minutes ago)
+      //-               img(src= data.publication_image, alt="").hot-news-name-university 
+      //-               span.hot-news-time #{moment(data.date_post).format('YYYY-MM-DD')}
 
-      //- section.latest-news
-      //-   h2.first-title
-      //-       a(href="") Tin tức mới nhất
-      //-   .list-latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-      //-     +latest-news 
-          
+      section.latest-news
+        h2.first-title
+            a(href="") Tin tức mới nhất
+        .list-latest-news 
+          each data in datas['newest_news']
+            a(href="").latestNews 
+              img(src=data.main_image, alt="#").news-image
+              h3.news-title #{data.title}
+              .news-item 
+                  img(src= data.publication_image, alt="").name-university 
+                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}  
          
 
       section.news-event
         h2.first-title
             a(href="/search_category?category='news'") Tin tức sự kiện
-        .list-news-event 
-          each data in datas['news']
-            a(href= data.source_post).news
-              img(src= data.main_image, alt="").news-image
-              h3.news-title #{data.title}
-              .news-item 
-                span.name-university #{data.publication}
-                span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+        if datas['news'].slice(0, 6).length > 0
+          .list-news-event 
+            each data in datas['news'].slice(0, 6)
+              a(href= data.link, target="_blank").news
+                img(src= data.main_image, alt="").news-image
+                h3.news-title #{data.title}
+                .news-item 
+                  img(src=data.publication_image , alt="").name-university
+                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+          if datas['news'].length > 6
+            br
+            a(href="/search_category?category='news'").see-more XEM THEM
+          
 
       section.addmisions
         h2.first-title
             a(href="/search_category?category='addmissions'") Tuyển sinh
-        .list-addmisions 
-          each data in datas['addmisions']
-            a(href= data.source_post).news-addmisions
-              img(src= data.main_image, alt="").news-image
-              h3.news-title #{data.title}
-              .news-item 
-                span.name-university #{data.publication}
-                span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
-
+        if datas['addmisions'].slice(0, 6).length > 0
+          .list-addmisions 
+            each data in datas['addmisions'].slice(0, 6)
+              a(href= data.link,target="_blank").news-addmisions
+                img(src= data.main_image, alt="").news-image
+                h3.news-title #{data.title}
+                .news-item 
+                  img(src=data.publication_image, alt="").name-university
+                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+          if datas['addmisions'].length > 6
+            a(href="/search_category?category='addmissions'") XEM THEM
 
       section.technology
         h2.first-title
             a(href="/search_category?category='technology'") Khoa học công nghệ
-        .list-technology 
-          each data in datas['technology']
-            a(data.source_post).news-technology
-              img(src= data.main_image, alt="").news-image
-              h3.news-title #{data.title}
-              .news-item 
-                span.name-university #{data.publication}
-                span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+        if datas['technology'].slice(0, 6).length > 0
+          .list-technology 
+            each data in datas['technology'].slice(0, 6)
+              a(href= data.link,target="_blank").news-technology
+                img(src= data.main_image, alt="").news-image
+                h3.news-title #{data.title}
+                .news-item 
+                  img(src=data.publication_image, alt="").name-university
+                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
           
+  #progress
+    span#progress-value &#x1F815;
+
+footer.footer
+  .foot-container
+    .foot-row
+      .footer-col
+        h4 Trụ sở
+        ul
+          li
+            p Tầng A, tòa nhà B, OMG complex, số 0 Lê Văn Lương, p.Yên Nghĩa, quận Hà Đông, Hà Nội.
+      .footer-col
+        h4 Chịu trách nhiệm nội dung
+        ul
+          li
+            p Ông: Nguyễn Tuấn Hiệp
+        //- h4 Liên hệ
+        ul
+          li
+            p
+              i.fa-solid.fa-phone  
+              |  Điện thoại: 024.62918118
+          li
+            p
+              i.fa-solid.fa-envelope
+              |  Email: Info@Phenikaa-Uni.Edu.Vn
+      .footer-col
+        h4 Theo dõi chúng tôi
+        .social-links
+          a(href='https://www.facebook.com/' target="_blank")
+            i.fab.fa-facebook-f
+          a(href='https://twitter.com/' target="_blank")
+            i.fab.fa-twitter
+          a(href='https://www.instagram.com/' target="_blank")
+            i.fab.fa-instagram
+          a(href='https://github.com/' target="_blank")
+            i.fab.fa-github
+
+
+
+script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js") 
+script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+script(src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous")
+script(src="https://kit.fontawesome.com/827ba881c6.js" crossorigin="anonymous")
+script(src="/js/main.js")

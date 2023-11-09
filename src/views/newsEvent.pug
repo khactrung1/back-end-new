@@ -10,10 +10,12 @@ head
   link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
   link(href='https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=DM+Sans:opsz,wght@9..40,500&display=swap' rel='stylesheet')
   link(rel="stylesheet", href="../css/newsEvent.css")
+  link(rel="icon" href="../images/Logo VUI.PNG" type="image/icon type")
 header
   .container-menu
     .logo-menu-div
-      a.logo-menu(href="/") News
+      a.logo-menu(href="/")
+        img(src='../images/Logo VUI.PNG', alt='logo')
     .news-div
       ul.menu
         li
@@ -41,9 +43,56 @@ body
     section.newsEvent1
       .list-news-event 
         each data in datas
-            a(href= data.source_post).news
+            a(href= data.link, target="_blank").news
               img(src= data.main_image, alt="").news-image
               h3.news-title #{data.title}
               .news-item 
-                  span.name-university #{data.publication}
+                  img(src=data.publication_image , alt="").name-university
                   span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+
+  #progress
+    span#progress-value &#x1F815;
+
+footer.footer
+  .foot-container
+    .foot-row
+      .footer-col
+        h4 Trụ sở
+        ul
+          li
+            p Tầng A, tòa nhà B, OMG complex, số 0 Lê Văn Lương, p.Yên Nghĩa, quận Hà Đông, Hà Nội.
+      .footer-col
+        h4 Chịu trách nhiệm nội dung
+        ul
+          li
+            p Ông Nguyễn Tuấn Hiệp
+      .footer-col
+        h4 Liên hệ
+        ul
+          li
+            p
+              i.fa-solid.fa-phone  
+              |  Điện thoại: 024.62918118
+          li
+            p
+              i.fa-solid.fa-envelope
+              |  Email: Info@Phenikaa-Uni.Edu.Vn
+      .footer-col
+        h4 Theo dõi chúng tôi
+        .social-links
+          a(href='https://www.facebook.com/' target="_blank")
+            i.fab.fa-facebook-f
+          a(href='https://twitter.com/' target="_blank")
+            i.fab.fa-twitter
+          a(href='https://www.instagram.com/' target="_blank")
+            i.fab.fa-instagram
+          a(href='https://github.com/' target="_blank")
+            i.fab.fa-github
+
+
+
+script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js") 
+script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+script(src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous")
+script(src="https://kit.fontawesome.com/827ba881c6.js" crossorigin="anonymous")
+script(src="/js/main.js")
