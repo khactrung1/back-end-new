@@ -48,7 +48,7 @@ body
             h3.news-title #{data.title}
             .news-item 
                 img(src=data.publication_image , alt="").name-university
-                span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+                span.news-time #{moment(data.date).format('YYYY-MM-DD')}
 
   #progress
     span#progress-value &#x1F815;

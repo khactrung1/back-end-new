@@ -38,19 +38,19 @@ body
       //-                 h2 #{data.title}
       //-             .hot-news-item 
       //-               img(src= data.publication_image, alt="").hot-news-name-university 
-      //-               span.hot-news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+      //-               span.hot-news-time #{moment(data.date).format('YYYY-MM-DD')}
 
       section.latest-news
         h2.first-title
             a(href="") Tin tức mới nhất
         .list-latest-news 
           each data in datas['newest_news']
-            a(href="").latestNews 
+            a(href=data.link).latestNews 
               img(src=data.main_image, alt="#").news-image
               h3.news-title #{data.title}
               .news-item 
                   img(src= data.publication_image, alt="").name-university 
-                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}  
+                  span.news-time #{moment(data.date).format('YYYY-MM-DD')}  
          
 
       section.news-event
@@ -64,7 +64,7 @@ body
                 h3.news-title #{data.title}
                 .news-item 
                   img(src=data.publication_image , alt="").name-university
-                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+                  span.news-time #{moment(data.date).format('YYYY-MM-DD')}
           if datas['news'].length > 6
             br
             a(href="/search_category?category='news'").see-more XEM THEM
@@ -81,7 +81,7 @@ body
                 h3.news-title #{data.title}
                 .news-item 
                   img(src=data.publication_image, alt="").name-university
-                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+                  span.news-time #{moment(data.date).format('YYYY-MM-DD')}
           if datas['addmisions'].length > 6
             a(href="/search_category?category='addmissions'") XEM THEM
 
@@ -96,7 +96,7 @@ body
                 h3.news-title #{data.title}
                 .news-item 
                   img(src=data.publication_image, alt="").name-university
-                  span.news-time #{moment(data.date_post).format('YYYY-MM-DD')}
+                  span.news-time #{moment(data.date).format('YYYY-MM-DD')}
           
   #progress
     span#progress-value &#x1F815;
